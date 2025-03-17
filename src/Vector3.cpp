@@ -65,8 +65,8 @@ Vector3 Vector3::absolute() {
     );
 }
 
-float Vector3::dot(const Vector3& Vector) {
-    return X * Vector.X + Y * Vector.Y + Z * Vector.Z;
+float Vector3::dot(const Vector3& a, const Vector3& b) {
+    return a.X * b.X + a.Y * b.Y + a.Z * b.Z;
 }
 
 float Vector3::distance(const Vector3& Vector) {

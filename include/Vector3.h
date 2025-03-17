@@ -27,6 +27,7 @@ struct Vector3 {
       static const Vector3 one;
       static const Vector3 zero;
       static Vector3 cross(const Vector3& a, const Vector3& b) ;
+      static float dot(const Vector3& a, const Vector3& b);
     
       // Methods
       float magnitude();
@@ -36,7 +37,6 @@ struct Vector3 {
       Vector3 lerp(const Vector3& Vector, float a);
       Vector3 clamp(const Vector3& Min, const Vector3& Max);
       Vector3 absolute();
-      float dot(const Vector3& Vector);
       float distance(const Vector3& Vector);
       bool equals(const Vector3& Vector);
     

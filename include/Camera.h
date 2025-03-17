@@ -78,10 +78,10 @@ class Camera {
             Vector3 up = Vector3::cross(forward, right).normalized();
 
             Vector3 V = point - Position;
-            float d = V.dot(forward); // Depth
+            float d = Vector3::dot(V, forward); // Depth
 
-            float x = V.dot(right);
-            float y = V.dot(up);
+            float x = Vector3::dot(V, right);
+            float y = Vector3::dot(V, up);
             float aspectratio = (float) width / (float) height; // force floating point
 
             float vfov = fov * (PI /180);

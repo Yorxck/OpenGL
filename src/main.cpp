@@ -24,7 +24,7 @@ int width, height;
 double delta;
 
 std::vector<Body> Bodies = {
-    Body(Vector3(20, 0, 0), 10, 0),
+    Body(Vector3(20, 0, 0), 10, 0)
 };
 
 int main(void) {
@@ -33,7 +33,7 @@ int main(void) {
 
     /* Variables */
     double lastTime = glfwGetTime();
-    float fpsLimit = 1.0 / 60.0;
+    float fpsLimit = 1.0 / 120.0;
     camera.fov = 70;
 
     while (!glfwWindowShouldClose(window)) {

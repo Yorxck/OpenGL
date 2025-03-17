@@ -9,47 +9,59 @@
 class Body {
     public:
         // Constructors
-        Body(Vector3 _position, float _radius, float _mass) : position(_position), radius(_radius), mass(_mass) {}
+        Body(Vector3 _position, float _radius, float _mass) : Position(_position), Radius(_radius), Mass(_mass) {}
     
         // Properties
-        Vector3 position;
-        Vector3 velocity;
-        float radius;
-        float mass;
+        Vector3 Position;
+        Vector3 Velocity;
+        float Radius;
+        float Mass;
 
         // Functions
         void accelerate(Vector3 Force) {
-            velocity += Force;
+            Velocity += Force;
         }
+        
         void update() {
-            position += velocity;
+            Position += Velocity;
         }
+
         void draw(Camera camera) {
             int width, height;
             glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
+            float distance = (camera.Position - Position).magnitude();
+            int resolution = 100; // calculate later based on distance
 
-            Vector3 s1 = camera.projectPoint(position);
+            for (int i = 0; i < resolution / 2; i++) {
+                float stacktheta1 = (i * PI) / (resolution / 2);
+                float stacktheta2 = ((i + 1) * PI) / (resolution / 2);
 
-            for (int i = 0; i < 100; i++) {
-                float theta1 = (i * (2 * PI) / 100);
-                float theta2 = ((i + 1) * (2 * PI) / 100);
-                
-                Vector3 p1(0, radius * cos(theta1), radius * sin(theta1));
-                Vector3 p2(0, radius * cos(theta2), radius * sin(theta2));
-        
-                p1 += position;
-                p2 += position;
+                for (int j = 0; j < resolution; j++) {
+                    float sectortheta1 = (j * (2 * PI)) / resolution;
+                    float sectortheta2 = ((j + 1) * (2 * PI)) / resolution;
 
-                Vector3 s2 = camera.projectPoint(p1);
-                Vector3 s3 = camera.projectPoint(p2);
-        
-                glBegin(GL_TRIANGLES);
+                    Vector3 v1 = Position + Vector3(sin(stacktheta1) * cos(sectortheta1), cos(stacktheta1), sin(stacktheta1) * sin(sectortheta1)) * Radius;
+                    Vector3 v2 = Position + Vector3(sin(stacktheta1) * cos(sectortheta2), cos(stacktheta1), sin(stacktheta1) * sin(sectortheta2)) * Radius;
+                    Vector3 v3 = Position + Vector3(sin(stacktheta2) * cos(sectortheta1), cos(stacktheta2), sin(stacktheta2) * sin(sectortheta1)) * Radius;
+                    Vector3 v4 = Position + Vector3(sin(stacktheta2) * cos(sectortheta2), cos(stacktheta2), sin(stacktheta2) * sin(sectortheta2)) * Radius;
 
-                glVertex2f(s1.X * width, s1.Y * height);
-                glVertex2f(s2.X * width, s2.Y * height);
-                glVertex2f(s3.X * width, s3.Y * height);
+                    Vector3 p1 = camera.projectPoint(v1);
+                    Vector3 p2 = camera.projectPoint(v2);
+                    Vector3 p3 = camera.projectPoint(v3);
+                    Vector3 p4 = camera.projectPoint(v4);
 
-                glEnd();
+                    if (p1.Z <= 0 || p2.Z <= 0 || p3.Z <= 0 || p4.Z <= 0) continue; // depth check
+
+                    glBegin(GL_TRIANGLES);
+                        glVertex2f(p1.X * width, p1.Y * height);
+                        glVertex2f(p2.X * width, p2.Y * height);
+                        glVertex2f(p3.X * width, p3.Y * height);
+
+                        glVertex2f(p2.X * width, p2.Y * height);
+                        glVertex2f(p3.X * width, p3.Y * height);
+                        glVertex2f(p4.X * width, p4.Y * height);
+                    glEnd();
+                }
             }
         }
 };

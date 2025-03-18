@@ -30,7 +30,7 @@ class Body {
             int width, height;
             glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
             float distance = (camera.Position - Position).magnitude();
-            int resolution = 100; // calculate later based on distance
+            int resolution = 8; // calculate later based on distance
 
             for (int i = 0; i < resolution / 2; i++) {
                 float stacktheta1 = (i * PI) / (resolution / 2);
@@ -45,12 +45,26 @@ class Body {
                     Vector3 v3 = Position + Vector3(sin(stacktheta2) * cos(sectortheta1), cos(stacktheta2), sin(stacktheta2) * sin(sectortheta1)) * Radius;
                     Vector3 v4 = Position + Vector3(sin(stacktheta2) * cos(sectortheta2), cos(stacktheta2), sin(stacktheta2) * sin(sectortheta2)) * Radius;
 
-                    Vector3 p1 = camera.projectPoint(v1);
-                    Vector3 p2 = camera.projectPoint(v2);
-                    Vector3 p3 = camera.projectPoint(v3);
-                    Vector3 p4 = camera.projectPoint(v4);
+                    //Vector3 p1 = camera.projectPoint(v1);
+                    //Vector3 p2 = camera.projectPoint(v2);
+                    //Vector3 p3 = camera.projectPoint(v3);
+                    //Vector3 p4 = camera.projectPoint(v4);
 
-                    if (p1.Z <= 0 || p2.Z <= 0 || p3.Z <= 0 || p4.Z <= 0) continue; // depth check
+                    std::vector<std::vector<Vector3>> triangles {
+                        {v1, v2, v3},
+                        {v2, v3, v4}
+                    };
+
+                    for (std::vector<Vector3> vertices : triangles) {
+                        int behindcamera = 0;
+
+                        for (Vector3 vertex : vertices) {
+                            
+                        }
+                    }
+
+
+                    /*if (p1.Z <= 0 || p2.Z <= 0 || p3.Z <= 0 || p4.Z <= 0) continue; // depth check
 
                     glBegin(GL_TRIANGLES);
                         glVertex2f(p1.X * width, p1.Y * height);
@@ -60,7 +74,7 @@ class Body {
                         glVertex2f(p2.X * width, p2.Y * height);
                         glVertex2f(p3.X * width, p3.Y * height);
                         glVertex2f(p4.X * width, p4.Y * height);
-                    glEnd();
+                    glEnd();*/
                 }
             }
         }

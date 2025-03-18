@@ -24,7 +24,7 @@ int width, height;
 double delta;
 
 std::vector<Body> Bodies = {
-    Body(Vector3(20, 0, 0), 10, 0)
+    Body(Vector3(20, 0, 0), 50, 0)
 };
 
 int main(void) {

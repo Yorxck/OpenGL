@@ -7,6 +7,7 @@ struct Vector3 {
     public:
       // Constructors
       Vector3() : X(0), Y(0), Z(0) {}
+      Vector3(float a) : X(a), Y(a), Z(a) {}
       Vector3(float x, float y, float z) : X(x), Y(y), Z(z) {}
     
       // Properties

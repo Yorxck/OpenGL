@@ -13,6 +13,7 @@
                 "${workspaceFolder}/src/glad.c",
                 "${workspaceFolder}/src/Vector2.cpp",
                 "${workspaceFolder}/src/Vector3.cpp",
+                "icon.o",
                 "-lglfw3dll",
                 "-lopengl32",
                 //"-static",

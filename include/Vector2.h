@@ -1,3 +1,5 @@
+#include <Vector3.h>
+
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
@@ -8,6 +10,7 @@ struct Vector2 {
       // Constructors
       Vector2() : X(0), Y(0) {}
       Vector2(float x, float y) : X(x), Y(y) {}
+      Vector2(Vector3 v) : X(v.X), Y(v.Y) {}
     
       // Properties
       float X;

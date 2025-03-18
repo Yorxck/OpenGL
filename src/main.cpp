@@ -22,9 +22,10 @@ GLFWwindow* window = CreateGLFWWindow(1200, 800, "Simulation"); /* Create a wind
 Camera camera(Vector3::zero);
 int width, height;
 double delta;
+double windowMaximalized = -glfwGetTime();
 
 std::vector<Body> Bodies = {
-    Body(Vector3(20, 0, 0), 50, 0)
+    Body(Vector3(50, 0, 0), 10, 0)
 };
 
 int main(void) {
@@ -45,7 +46,7 @@ int main(void) {
                 Body body = Bodies[i];
                 body.draw(camera);
             }
-            
+
             camera.update(delta);
             lastTime = glfwGetTime(); /* Update timestamp for dt */
             glfwSwapBuffers(window); /* Swap front and back buffers */
@@ -82,11 +83,20 @@ void doChores() {
     glMatrixMode(GL_MODELVIEW);
     glClear(GL_COLOR_BUFFER_BIT);
     write(Vector2(1, height - 8*3), 
-        "Position: " + std::to_string((int) camera.Position.X) + ", " + std::to_string((int) camera.Position.Y) + "," + std::to_string((int) camera.Position.Z) + 
-        "\nRotation: " + std::to_string((int) camera.Rotation.X) + ", " + std::to_string((int) camera.Rotation.Y) + "," + std::to_string((int) camera.Rotation.Z) + 
+        "Position: " + camera.Position.toString() + 
+        "\nRotation: " + camera.Rotation.toString() + 
         "\nfps: " + std::to_string((int) std::round(1/delta))
         , 1
     ); // write fps
+
+    if ((glfwGetTime() - windowMaximalized) > 0.5 && glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_F11) == GLFW_PRESS) {
+        if (glfwGetWindowAttrib(window, GLFW_MAXIMIZED) == GLFW_TRUE) {
+            glfwRestoreWindow(window);
+        } else {
+            glfwMaximizeWindow(window);
+        }
+        windowMaximalized = glfwGetTime();
+    }
 }
 
 void update_camera(GLFWwindow* window, double xpos, double ypos) {

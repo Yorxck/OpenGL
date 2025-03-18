@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
@@ -40,6 +42,7 @@ struct Vector3 {
       Vector3 absolute();
       float distance(const Vector3& Vector);
       bool equals(const Vector3& Vector);
+      std::string toString();
     
       // Math Operators
       Vector3 operator=(const Vector3 &other);

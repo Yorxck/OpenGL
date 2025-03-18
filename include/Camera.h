@@ -12,7 +12,7 @@ class Camera {
         Camera(Vector3 _Position) : Position(_Position) {}
     
         // Properties
-        Vector3 Position;
+        Vector3 Position; // Camera Positon 
         Vector3 Rotation = Vector3(); // Pitch (X), Yaw (Y), Roll (Z)
         float Speed = 50.0f;
         float Sensitivity = 15.0f;

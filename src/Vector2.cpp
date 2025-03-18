@@ -1,5 +1,6 @@
 #include <cmath>
 #include <Vector2.h>
+#include <Vector3.h>
 
 // define static members
 const Vector2 Vector2::up(0, 1);

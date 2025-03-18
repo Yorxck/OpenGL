@@ -1,5 +1,5 @@
 #include <cmath>
-#include <iostream>
+#include <string>
 #include <Vector3.h>
 
 // define static members
@@ -75,6 +75,10 @@ float Vector3::distance(const Vector3& Vector) {
 
 bool Vector3::equals(const Vector3& Vector) {
     return (X == Vector.X && Y == Vector.Y && Z == Vector.Z);
+}
+
+std::string Vector3::toString() {
+    return (std::to_string((int) this->X) + ", " + std::to_string((int) this->Y) + ", " + std::to_string((int) this->Z));
 }
 
 // math operators

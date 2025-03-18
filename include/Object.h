@@ -1,4 +1,5 @@
 #include <Vector2.h>
+#include <Vector3.h>
 #include <Camera.h>
 #include <cmath>
 #include <GLFW/glfw3.h>
@@ -50,7 +51,7 @@ class Body {
 
                     if (p1.Z <= 0 || p2.Z <= 0 || p3.Z <= 0 || p4.Z <= 0) continue; // depth check
                     
-                    triangle(p1, p2, p3);
+                    triangle(p1, p2, p3); // Vector3 color
                     triangle(p2, p3, p4);
                 }
             }
@@ -59,7 +60,7 @@ class Body {
         void triangle(Vector2 p1, Vector2 p2, Vector2 p3) {
             int width, height;
             glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
-
+            
             glBegin(GL_TRIANGLES);
                 glVertex2f(p1.X * width, p1.Y * height);
                 glVertex2f(p2.X * width, p2.Y * height);

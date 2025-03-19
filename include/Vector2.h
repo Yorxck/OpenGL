@@ -15,8 +15,8 @@ struct Vector2 {
       // Properties
       float X;
       float Y;
-      float* const x = &X;
-      float* const y = &Y;
+      float& x = X;
+      float& y = Y;
     
       // Static
       static const Vector2 up;

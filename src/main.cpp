@@ -30,6 +30,7 @@ std::vector<Body> Bodies = {
 
 int main(void) {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glEnable(GL_DEPTH_TEST); 
     glfwSetCursorPosCallback(glfwGetCurrentContext(), update_camera);
 
     /* Variables */
@@ -81,7 +82,6 @@ void doChores() {
     glLoadIdentity();
     glOrtho(0, width, height, 0, -1, 1);
     glMatrixMode(GL_MODELVIEW);
-    glEnable(GL_DEPTH_TEST); 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     write(Vector2(1, height - 8*3), 
         "Position: " + camera.Position.toString() + 

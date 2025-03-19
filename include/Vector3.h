@@ -12,13 +12,21 @@ struct Vector3 {
       Vector3(float a) : X(a), Y(a), Z(a) {}
       Vector3(float x, float y, float z) : X(x), Y(y), Z(z) {}
     
-      // Properties
+      // Vector Properties
       float X;
       float Y;
       float Z;
-      float* const x = &X;
-      float* const y = &Y;
-      float* const z = &Z;
+      float& x = X;
+      float& y = Y;
+      float& z = Z;
+
+      // Color Properties
+      float& R = X;
+      float& G = Y;
+      float& B = Z;
+      float& r = X;
+      float& g = Y;
+      float& b = Z;
     
       // Static
       static const Vector3 up;

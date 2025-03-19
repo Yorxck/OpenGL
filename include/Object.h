@@ -62,9 +62,9 @@ class Body {
             glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
             
             glBegin(GL_TRIANGLES);
-                glVertex2f(p1.X * width, p1.Y * height);
-                glVertex2f(p2.X * width, p2.Y * height);
-                glVertex2f(p3.X * width, p3.Y * height);
+                glVertex3f(p1.X * width, p1.Y * height, p1.Z);
+                glVertex3f(p2.X * width, p2.Y * height, p2.Z);
+                glVertex3f(p3.X * width, p3.Y * height, p3.Z);
             glEnd();
         }
 };

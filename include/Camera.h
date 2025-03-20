@@ -35,23 +35,25 @@ class Camera {
             Vector3 right = Vector3::cross(Vector3::up, forward).normalized();
             Vector3 up = Vector3::cross(forward, right).normalized();
 
+            float rspeed = (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) ? Speed * 2 : Speed;
+
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {
-                Position += forward * (Speed * delta); // Move forward
+                Position += forward * (rspeed * delta); // Move forward
             }
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS) {
-                Position -= forward * (Speed * delta); // Move back
+                Position -= forward * (rspeed * delta); // Move back
             }
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_A) == GLFW_PRESS) {
-                Position -= right * (Speed * delta); // Move right
+                Position -= right * (rspeed * delta); // Move right
             }
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_D) == GLFW_PRESS) {
-                Position += right * (Speed * delta); // Move left
+                Position += right * (rspeed * delta); // Move left
             }
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_E) == GLFW_PRESS) {
-                Position += up * (Speed * delta); // Move up
+                Position += up * (rspeed * delta); // Move up
             }
             if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_Q) == GLFW_PRESS) {
-                Position -= up * (Speed * delta); // Move down
+                Position -= up * (rspeed * delta); // Move down
             }
         }
 

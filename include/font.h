@@ -122,7 +122,7 @@ static const unsigned char default_font[] = {
 };
 
 void write(Vector2 Cursor, std::string s, int Size = 1) { // Character = 5*8
-    int width, height;
+    /*int width, height;
     glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
 
     for (int i = 0; i < s.length(); i++) {
@@ -161,7 +161,7 @@ void write(Vector2 Cursor, std::string s, int Size = 1) { // Character = 5*8
             
             Cursor.X += 6 * Size;
         }
-    }
+    }*/
 }
 
 #endif

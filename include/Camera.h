@@ -72,31 +72,31 @@ class Camera {
             Rotation.X = (Rotation.X) < (-89.0f) ? (-89.0f) : ((Rotation.X) > (89.0f) ? (89.0f) : (Rotation.X));
         }
 
-        Vector3 projectPoint(Vector3 point) {
-            int width, height;
-            glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
-            Vector3 forward = this->direction();
-            Vector3 right = Vector3::cross(Vector3::up, forward).normalized();
-            Vector3 up = Vector3::cross(forward, right).normalized();
+        // Vector3 projectPoint(Vector3 point) {
+        //     int width, height;
+        //     glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
+        //     Vector3 forward = this->direction();
+        //     Vector3 right = Vector3::cross(Vector3::up, forward).normalized();
+        //     Vector3 up = Vector3::cross(forward, right).normalized();
 
-            Vector3 V = point - Position;
-            float d = Vector3::dot(V, forward); // Depth
+        //     Vector3 V = point - Position;
+        //     float d = Vector3::dot(V, forward); // Depth
 
-            float x = Vector3::dot(V, right);
-            float y = Vector3::dot(V, up);
-            float aspectratio = (float) width / (float) height; // force floating point
+        //     float x = Vector3::dot(V, right);
+        //     float y = Vector3::dot(V, up);
+        //     float aspectratio = (float) width / (float) height; // force floating point
 
-            float vfov = fov * (PI /180);
-            float hfov = 2.0f * atan(aspectratio * tan(vfov * 0.5f));
+        //     float vfov = fov * (PI /180);
+        //     float hfov = 2.0f * atan(aspectratio * tan(vfov * 0.5f));
 
-            float u = x / (d * tan(hfov / 2.0f));
-            float v = y / (d * tan(vfov / 2.0f));
+        //     float u = x / (d * tan(hfov / 2.0f));
+        //     float v = y / (d * tan(vfov / 2.0f));
 
-            float uScreen = (u + 1.0f) / 2.0f;
-            float vScreen = 1.0f - (v + 1.0f) / 2.0f;
+        //     float uScreen = (u + 1.0f) / 2.0f;
+        //     float vScreen = 1.0f - (v + 1.0f) / 2.0f;
 
-            return Vector3(uScreen, vScreen, d);
-        }
+        //     return Vector3(uScreen, vScreen, d);
+        // }
 
     private:
         Vector2 lastMouse = Vector2();
